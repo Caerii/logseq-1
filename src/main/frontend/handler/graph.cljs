@@ -41,10 +41,13 @@
                               [true true]   "#ffffff"))
                      color (if (contains? tags (string/lower-case (str p)))
                              (if dark? "orange" "green")
-                             color)]
+                             color)
+                     conns (get-connections p edges)]
                  {:id p
-                  :name name
-                  :val (get-connections p edges)
+                  :name p
+                  ;; ugh. so apparently this only impacts node sizes... whereas I want sources
+                  :val conns
+                  ;; TODO what's group for?? I don't think colors do anything either
                   :autoColorBy "group"
                   :group (js/Math.ceil (* (js/Math.random) 12))
                   :color color})))
